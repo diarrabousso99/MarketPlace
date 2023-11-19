@@ -10,18 +10,23 @@ import Register from "./Component/Register";
 import reportWebVitals from "./reportWebVitals";
 import Shopping from "./Component/Shopping";
 import AllProducts from "./Component/AllProducts";
+import { AuthProvider } from "./Component/Auth";
+import { Login } from "./Component/Login";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-      <Route path="/allproducts" component={AllProducts} />
-        <Route path="/shopping"  component={Shopping} />
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route path="/allproducts" component={AllProducts} />
+          <Route path="/login" component={Login} />
+          <Route path="/shopping" component={Shopping} />
 
-        <Route path="/register" component={Register} />
-        <Route path="/" component={App} />
-      </Switch>
-    </Router>
+          <Route path="/register" component={Register} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
