@@ -4,3 +4,9 @@ export const ErrorText = styled.span`
   font-size: 18px;
   margin: 7px 0;
 `;
+
+export const MessageText = styled.span`
+  color: #5deb5d;
+  font-size: 18px;
+  margin: 7px 0;
+`;

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
+import logo from "../assets/logo_M.png";
+
 import {
   MDBContainer,
   MDBNavbar,
@@ -21,13 +23,13 @@ import { useAuth } from "./Auth";
 export default function Header() {
   const [showBasic, setShowBasic] = useState(true);
 
-
   const navigate = useHistory();
 
-  const navLinkStyles = ({ isActive }) => {
+  const navLinkStyles = ({ active }) => {
     return {
-      fontWeight: isActive ? "bold" : "normal",
-      textDecoration: isActive ? "none" : "underline",
+      fontWeight: active ? "bold" : "normal",
+      textDecoration: active ? "none" : "underline",
+      color: "rgb(3, 157, 85)",
     };
   };
 
@@ -36,16 +38,23 @@ export default function Header() {
   const handleLogout = () => {
     auth.logout();
     navigate.push("/");
-
   };
 
   return (
     <div>
       <header>
-        <MDBNavbar expand="lg" dark bgColor="dark" fixed>
+        <MDBNavbar expand="lg" light bgColor="light" fixed>
           <MDBContainer fluid>
             <Link to="/">
-              <MDBNavbarBrand>LOGO</MDBNavbarBrand>
+              <MDBNavbarBrand>
+                <img src={logo} height="70"></img>
+                <span
+                  className="mt-5"
+                  style={{ color: "rgb(3, 157, 85)", fontWeight: "900" }}
+                >
+                  Arket
+                </span>
+              </MDBNavbarBrand>
             </Link>
 
             <div className="d-flex w-auto mb-3">
@@ -64,7 +73,9 @@ export default function Header() {
                     {/* Liens à droite */}
                     <MDBNavbarItem>
                       <Link to="/allproducts">
-                        <MDBNavbarLink>Shop</MDBNavbarLink>
+                        <MDBNavbarLink style={{ color: "rgb(3, 157, 85)" }}>
+                          Shop
+                        </MDBNavbarLink>
                       </Link>
                     </MDBNavbarItem>
                     <MDBDropdown>

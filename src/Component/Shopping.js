@@ -17,6 +17,7 @@ import {
 } from "mdb-react-ui-kit";
 import Header from "./Header";
 import $ from "jquery";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class Shopping extends React.Component {
   componentDidMount() {
@@ -75,7 +76,11 @@ class Shopping extends React.Component {
                           <div className="d-flex justify-content-between align-items-center mb-5">
                             <MDBTypography
                               tag="h1"
-                              className="fw-bold mb-0 text-black"
+                              className="fw-bold mb-0 " style={{
+                                color: "rgb(3, 157, 85)",
+                                fontSize: "3.3rem",
+                                fontWeight: "900",
+                              }}
                             >
                               Mon panier
                             </MDBTypography>
@@ -253,6 +258,7 @@ class Shopping extends React.Component {
 
                           <div className="pt-5">
                             <MDBTypography tag="h6" className="mb-0">
+                              <Link to='/shop'>
                               <MDBCardText
                                 tag="a"
                                 href="#!"
@@ -261,6 +267,7 @@ class Shopping extends React.Component {
                                 <MDBIcon fas icon="long-arrow-alt-left me-2" />{" "}
                                 Retour a la boutique
                               </MDBCardText>
+                              </Link>
                             </MDBTypography>
                           </div>
                         </div>
@@ -282,8 +289,8 @@ class Shopping extends React.Component {
                             <MDBTypography tag="h5">€ 137.00</MDBTypography>
                           </div>
 
-                          <MDBBtn color="dark" block size="lg">
-                            Register
+                          <MDBBtn color="success" block size="lg">
+                            Valider
                           </MDBBtn>
                         </div>
                       </MDBCol>

@@ -32,7 +32,7 @@ export default function Shoes() {
                 10.0000 Fcfa
               </span>
             </MDBCardText>
-            <MDBBtn outline color="success" href="#">
+            <MDBBtn outline color="success" href="/shopping">
               <MDBIcon fas icon="plus" />
               panier
             </MDBBtn>
@@ -56,7 +56,7 @@ export default function Shoes() {
                 10.0000 Fcfa
               </span>
             </MDBCardText>
-            <MDBBtn outline color="success" href="#">
+            <MDBBtn outline color="success" href="/shopping">
               <MDBIcon fas icon="plus" />
               panier
             </MDBBtn>
@@ -80,7 +80,7 @@ export default function Shoes() {
                 10.0000 Fcfa
               </span>
             </MDBCardText>
-            <MDBBtn outline color="success" href="#">
+            <MDBBtn outline color="success" href="/shopping">
               <MDBIcon fas icon="plus" />
               panier
             </MDBBtn>
@@ -104,7 +104,7 @@ export default function Shoes() {
                 10.0000 Fcfa
               </span>
             </MDBCardText>
-            <MDBBtn outline color="success" href="#">
+            <MDBBtn outline color="success" href="/shopping">
               <MDBIcon fas icon="plus" />
               panier
             </MDBBtn>
@@ -115,7 +115,7 @@ export default function Shoes() {
       {/* <nav aria-label="...">
         <MDBPagination className="mb-0">
           <MDBPaginationItem disabled>
-            <MDBPaginationLink href="#" tabIndex={-1} aria-disabled="true">
+            <MDBPaginationLink href="/shopping" tabIndex={-1} aria-disabled="true">
               Previous
             </MDBPaginationLink>
           </MDBPaginationItem>

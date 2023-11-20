@@ -1,5 +1,9 @@
-import React from "react";
-import { ErrorText } from "./Commons";
+import React, { useState } from "react";
+
+import { ErrorText, MessageText } from "./Commons";
+import axios from "axios";
+import image from "../assets/image.png";
+import logo from "../assets/logo_M.png";
 
 import {
   MDBBtn,
@@ -15,18 +19,43 @@ import {
 } from "mdb-react-ui-kit";
 import Header from "./Header";
 import { Formik } from "formik";
-
-const handleRegister = (values) => {
-  const data = JSON.stringify(values, null, 2);
-
-  alert(data);
-
-}
+import { useAuth } from "./Auth";
 
 export default function Register() {
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const auth = useAuth();
+
+  const handleRegister = (values) => {
+    // console.log(values);
+    axios
+      .post(
+        auth.endpoint + "/register",
+        {
+          login: values.login,
+          email: values.email,
+          password: values.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        setMessage("Compte créé avec succès , veuillez vous connecter.");
+      })
+      .catch(function (error) {
+        // Si une erreur survient pendant la requête
+        setError("Erreur lors de la requête");
+        console.error("Erreur lors de la requête:", error);
+      });
+  };
+
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
@@ -36,15 +65,23 @@ export default function Register() {
                 lg="6"
                 className="order-2 order-lg-1 d-flex flex-column align-items-center"
               >
-                <p classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                  Sign up
+                <p
+                  classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                  style={{
+                    color: "rgb(3, 157, 85)",
+                    fontWeight: "900",
+                    fontSize: "1.3rem",
+                  }}
+                >
+                  Créer un compte
                 </p>
+                <MessageText>{message}</MessageText>
+                <ErrorText>{error}</ErrorText>
                 <Formik
                   initialValues={{
                     login: "",
                     email: "",
                     password: "",
-                    repeatPassword: "",
                   }}
                   validate={(values) => {
                     const errors = {};
@@ -53,8 +90,11 @@ export default function Register() {
                     }
                     if (!values.password) {
                       errors.password = "Required";
-                    } else if (values.password != values.repeatPassword) {
-                      errors.password = "Veuillez saisir le meme mots de passe";
+                    }
+                    if (values.repeatPassword) {
+                      if (values.password != values.repeatPassword) {
+                        errors.password = "Mots de passe incorrects";
+                      }
                     }
                     if (!values.email) {
                       errors.email = "Required";
@@ -127,13 +167,10 @@ export default function Register() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                        <ErrorText>
-                          {errors.password &&
-                            touched.password &&
-                            errors.password}
-                        </ErrorText>
                       </div>
-
+                      <ErrorText>
+                        {errors.password && touched.password && errors.password}
+                      </ErrorText>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <MDBIcon fas icon="key me-3" size="lg" />
                         <MDBInput
@@ -160,21 +197,44 @@ export default function Register() {
                         className="mb-4"
                         size="lg"
                         desabled={isSubmitting}
+                        color="success"
                       >
                         Register
                       </MDBBtn>
                     </form>
                   )}
                 </Formik>
+                <p className="small fw-bold mt-2 pt-1 mb-2">
+                  Avez-vous déjà un compte ?{" "}
+                  <a href="/login" className="link-success">
+                    Login
+                  </a>
+                </p>
               </MDBCol>
 
               <MDBCol
                 md="10"
                 lg="6"
-                className="order-1 order-lg-2 d-flex align-items-center"
+                className="order-1 order-lg-2  align-items-top"
               >
+                <span
+                  style={{
+                    fontSize: "2.3rem",
+                    fontWeight: "900",
+                  }}
+                >
+                  Bienvenue chez{" "}
+                  <img src={logo} height="60" className="mb-4"></img>
+                  <span
+                    className="mt-10"
+                    style={{ color: "rgb(3, 157, 85)", fontWeight: "300" }}
+                  >
+                    Arket
+                  </span>
+                </span>
                 <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  src={image}
+                  // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                   fluid
                 />
               </MDBCol>

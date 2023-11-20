@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "./Auth";
+import image from "../assets/image.png";
+import logo from "../assets/logo_M.png";
+
 import {
   MDBContainer,
   MDBCol,
@@ -13,19 +16,22 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import { ErrorText } from "./Commons";
 import axios, { AxiosError } from "axios";
+import { Endpoint } from "./Endpoint";
 
 export const Login = () => {
   const [error, setError] = useState("");
 
   const auth = useAuth();
+
   const navigate = useHistory();
 
   const handleLogin = (values) => {
+    // alert(auth.endpoint + "/yep");
     const data = JSON.stringify(values, null, 2);
     // call api
 
     axios
-      .post("http://localhost:8080/api/authenticate", data, {
+      .post(auth.endpoint + "/authenticate", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -37,8 +43,8 @@ export const Login = () => {
         navigate.push("/");
       })
       .catch(function (error) {
-        // Si une erreur survient pendant la requête      
-        setError(" Login ou Mot de passe incorrect")
+        // Si une erreur survient pendant la requête
+        setError(" Login ou Mot de passe incorrect");
         console.error("Erreur lors de la requête:", error);
         // Gérez l'erreur ou affichez un message à l'utilisateur
         // Vous pouvez également relancer l'erreur si vous souhaitez qu'elle soit gérée ailleurs
@@ -50,32 +56,31 @@ export const Login = () => {
     <MDBContainer fluid className="p-3 my-5 h-custom">
       <MDBRow>
         <MDBCol col="10" md="6">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            class="img-fluid"
-            alt="Sample image"
-          />
+          <img src={image} class="img-fluid" alt="Sample image" />
         </MDBCol>
 
         <MDBCol col="4" md="6">
           <div className="d-flex flex-row align-items-center justify-content-center">
-            <p className="lead fw-normal mb-0 me-3">Connexion avec </p>
-
-            <MDBBtn floating size="md" tag="a" className="me-2">
-              <MDBIcon fab icon="facebook-f" />
-            </MDBBtn>
-
-            <MDBBtn floating size="md" tag="a" className="me-2">
-              <MDBIcon fab icon="twitter" />
-            </MDBBtn>
-
-            <MDBBtn floating size="md" tag="a" className="me-2">
-              <MDBIcon fab icon="linkedin-in" />
-            </MDBBtn>
+            <p
+              className="mb-0 me-3"
+              style={{
+                fontWeight: "900",
+                fontSize: "2.3rem",
+              }}
+            >
+              <img src={logo} height="60" className="mb-4"></img>
+              <span
+                className="mt-20  "
+                style={{ color: "rgb(3, 157, 85)", fontWeight: "300" }}
+              >
+                Arket
+              </span>
+             {"   "} Heureux de vous revoir !{" "}
+            </p>
           </div>
 
           <div className="divider d-flex align-items-center my-4">
-            <p className="text-center fw-bold mx-3 mb-0">Or</p>
+            <p className="text-center fw-bold mx-3 mb-0"></p>
           </div>
           <ErrorText>{error}</ErrorText>
           <Formik
@@ -144,7 +149,9 @@ export const Login = () => {
                     id="remember"
                     label="Remember me"
                   />
-                  <a href="!#">Forgot password?</a>
+                  <a href="!#" className="link-success">
+                    Forgot password?
+                  </a>
                 </div>
 
                 <div className="text-center text-md-start mt-4 pt-2">
@@ -152,12 +159,13 @@ export const Login = () => {
                     className="mb-0 px-5"
                     size="lg"
                     desabled={isSubmitting}
+                    color="success"
                   >
                     Login
                   </MDBBtn>
                   <p className="small fw-bold mt-2 pt-1 mb-2">
-                    Don't have an account?{" "}
-                    <a href="#!" className="link-danger">
+                    Vous n'avez pas de compte?{" "}
+                    <a href="/register" className="link-danger">
                       Register
                     </a>
                   </p>
@@ -168,12 +176,5 @@ export const Login = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
-    // <div>
-    //     <label>
-    //         Username: <input type="text" onChange={e=>setUser(e.target.value)}></input>
-    //     </label>
-
-    //     <button onClick={handleLogin}> Login</button>
-    // </div>
   );
 };
