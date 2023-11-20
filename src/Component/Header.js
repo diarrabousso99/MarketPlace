@@ -107,6 +107,7 @@ export default function Header() {
                         </MDBNavbarLink>
                       </Link>
                     </MDBNavbarItem>
+                   
                     {!auth.user && (
                       <MDBNavbarItem>
                         <MDBNavbarLink href="/login">

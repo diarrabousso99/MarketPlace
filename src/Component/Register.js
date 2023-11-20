@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { ErrorText, MessageText } from "./Commons";
 import axios from "axios";
@@ -224,14 +225,17 @@ export default function Register() {
                   }}
                 >
                   Bienvenue chez{" "}
-                  <img src={logo} height="60" className="mb-4"></img>
-                  <span
-                    className="mt-10"
-                    style={{ color: "rgb(3, 157, 85)", fontWeight: "300" }}
-                  >
-                    Arket
-                  </span>
+                  <Link to="/">
+                    <img src={logo} height="60" className="mb-4"></img>
+                    <span
+                      className="mt-10"
+                      style={{ color: "rgb(3, 157, 85)", fontWeight: "300" }}
+                    >
+                      Arket
+                    </span>
+                  </Link>
                 </span>
+
                 <MDBCardImage
                   src={image}
                   // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"

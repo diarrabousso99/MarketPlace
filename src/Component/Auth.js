@@ -16,17 +16,18 @@ export const AuthProvider = ({children}) => {
   };
 
   const logout =()=>{
-    setUser(null)
-    setToken(null)
+    setUser(null);
+    setToken(null);
   }
 
   const haveToken=(token)=>{
     setToken(token)
-    
+   
   }
+ 
 
   return (
-    <AuthContext.Provider value={{user,login,logout,haveToken,endpoint}}>
+    <AuthContext.Provider value={{user,login,logout,haveToken,endpoint,token}}>
         {children}
     </AuthContext.Provider>
   )

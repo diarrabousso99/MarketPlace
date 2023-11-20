@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useAuth } from "./Auth";
 import image from "../assets/image.png";
 import logo from "../assets/logo_M.png";
+import { Link } from "react-router-dom";
+
 
 import {
   MDBContainer,
   MDBCol,
   MDBRow,
   MDBBtn,
-  MDBIcon,
   MDBInput,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
@@ -16,7 +17,6 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import { ErrorText } from "./Commons";
 import axios, { AxiosError } from "axios";
-import { Endpoint } from "./Endpoint";
 
 export const Login = () => {
   const [error, setError] = useState("");
@@ -26,7 +26,7 @@ export const Login = () => {
   const navigate = useHistory();
 
   const handleLogin = (values) => {
-    // alert(auth.endpoint + "/yep");
+    
     const data = JSON.stringify(values, null, 2);
     // call api
 
@@ -68,6 +68,8 @@ export const Login = () => {
                 fontSize: "2.3rem",
               }}
             >
+              <Link to='/'>
+            
               <img src={logo} height="60" className="mb-4"></img>
               <span
                 className="mt-20  "
@@ -75,6 +77,8 @@ export const Login = () => {
               >
                 Arket
               </span>
+              </Link>
+
              {"   "} Heureux de vous revoir !{" "}
             </p>
           </div>
