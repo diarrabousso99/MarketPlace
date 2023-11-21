@@ -12,6 +12,8 @@ import Shopping from "./Component/Shopping";
 import AllProducts from "./Component/AllProducts";
 import { AuthProvider } from "./Component/Auth";
 import { Login } from "./Component/Login";
+import { RequireAuth } from "./Component/RequireAuth";
+import { Order } from "./Component/Order";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,7 +22,9 @@ ReactDOM.render(
         <Switch>
           <Route path="/allproducts" component={AllProducts} />
           <Route path="/login" component={Login} />
-          <Route path="/shopping" component={Shopping} />
+          <Route path="/shopping/:id" component={Shopping} />
+
+          <RequireAuth path="/order" component={Order} />
 
           <Route path="/register" component={Register} />
           <Route path="/" component={App} />

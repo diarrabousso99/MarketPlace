@@ -1,0 +1,16 @@
+.fixed {
+
+    background-color:transparent;
+    position: fixed;
+    padding-bottom: 1px;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+
+    
+    /* Assurez-vous que l'en-tête est au-dessus des autres éléments */
+  }
+
+  #header-bg {
+    background-color:rgba(236, 238, 246, 0.5);
+}

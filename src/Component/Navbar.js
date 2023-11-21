@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <div>
       <div
-        className="p-5 bg-image  mt-4 "
+        className="p-5 bg-image   "
         style={{
           backgroundImage:
             "url('https://6ammart-react.6amtech.com/_next/static/media/hero_background.dffabf5b.png')",
